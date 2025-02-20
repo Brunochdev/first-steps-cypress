@@ -1,6 +1,7 @@
 describe('Orange HRM Tests', () => {
   it('Login - Success', () => {
     cy.visit('https://opensource-demo.orangehrmlive.com/web/index.php/auth/login')
+// Using right credentials    
     cy.get("[name='username']").type('Admin') //correct user
     cy.get("[name='password']").type('admin123') //correct password
     cy.get('.oxd-button').click()
@@ -8,7 +9,7 @@ describe('Orange HRM Tests', () => {
     cy.get('.oxd-text--h6').contains('Dashboard') //checking element on new page
   })
 
-  it.skip('Login - Fail', () => {
+  it('Login - Fail', () => {
     cy.visit('https://opensource-demo.orangehrmlive.com/web/index.php/auth/login')
 // Using wrong credentials on username only
     cy.get("[name='username']").type('Adimin') //incorrect user
@@ -16,6 +17,7 @@ describe('Orange HRM Tests', () => {
     cy.get('.oxd-button').click()
     cy.get('.oxd-alert') //checking message of fail
 
+    cy.visit('https://opensource-demo.orangehrmlive.com/web/index.php/auth/login')
 //using wrong credentials on password only
     cy.get("[name='username']").type('Admin') //correct user
     cy.get("[name='password']").type('admin223') //incorrect password
