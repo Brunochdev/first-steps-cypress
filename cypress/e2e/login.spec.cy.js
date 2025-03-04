@@ -22,7 +22,7 @@ describe('Orange HRM Tests', () => {
   }
 
   it('Login - Success', () => {
-    cy.visit('https://opensource-demo.orangehrmlive.com/web/index.php/auth/login')
+    cy.visit('/auth/login')
 // Using right credentials    
     cy.get(selectorsList.usernameField).type(userData.loginSuccess.username) //correct user
     cy.get(selectorsList.passwordField).type(userData.loginSuccess.password) //correct password
@@ -32,14 +32,14 @@ describe('Orange HRM Tests', () => {
   })
 
   it('Login - Fail', () => {
-    cy.visit('https://opensource-demo.orangehrmlive.com/web/index.php/auth/login')
+    cy.visit('/auth/login')
 // Using wrong credentials on username only
     cy.get(selectorsList.usernameField).type(userData.loginFail.username) //incorrect user
     cy.get(selectorsList.passwordField).type(userData.loginSuccess.password) //correct password
     cy.get(selectorsList.buttonClick).click()
     cy.get(selectorsList.alertFail) //checking message of fail
 
-    cy.visit('https://opensource-demo.orangehrmlive.com/web/index.php/auth/login')
+    cy.visit('/auth/login')
 //using wrong credentials on password only
     cy.get(selectorsList.usernameField).type(userData.loginSuccess.username) //correct user
     cy.get(selectorsList.passwordField).type(userData.loginFail.password) //incorrect password
