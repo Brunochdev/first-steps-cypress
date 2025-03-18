@@ -10,17 +10,6 @@ describe('Orange HRM Tests', () => {
     alertFail: '.oxd-alert'
   }
 
-  const userData = {
-    loginSuccess:{
-      username:'Admin',
-      password:'admin123'
-    },
-    loginFail: {
-      username:'Test',
-      password:'Test'
-    }
-  }
-
   it('Login - Success', () => {
     cy.visit('/auth/login')
 // Using right credentials    
