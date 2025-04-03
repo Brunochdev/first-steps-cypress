@@ -15,24 +15,12 @@ describe('Orange HRM Tests', () => {
     genericEmployeeIdField:".oxd-input--active",//position 3
     genericOtherIdField:".oxd-input--active",//position 4
     genericDriverLicenseNumberField:".oxd-input--active",//position 5
-    genericLicenseExpireDateField:"cy.get(':nth-child(2) > .oxd-input-group > :nth-child(2) > .oxd-date-wrapper > .oxd-date-input > .oxd-input')",//position 0
-    genericNationalityField:".oxd-select-text-input",//position 0
-    maritalStatusField:"",
-    bithDateField:"",
-    genderChoice:"",
+    genericLicenseExpireDateField:"[placeholder='yyyy-dd-mm']",//position 0
+    dateCloseButton:".--close",
+    saveButton:"[type='submit']",
+    saveSuccessfully:".oxd-toast"
 
 
-  }
-
-  const userData = {
-    loginSuccess:{
-      username:'Admin',
-      password:'admin123'
-    },
-    loginFail: {
-      username:'Test',
-      password:'Test'
-    }
   }
 
   it.only('Login - User Info Update', () => {
@@ -50,9 +38,15 @@ describe('Orange HRM Tests', () => {
     cy.get(selectorsList.genericEmployeeIdField).eq(3).clear().type('EMP01')
     cy.get(selectorsList.genericOtherIdField).eq(4).clear().type('OTH01')
     cy.get(selectorsList.genericDriverLicenseNumberField).eq(5).clear().type('DRLI01')
-    cy.get(selectorsList.genericLicenseExpireDateField).clear().type('2035-06-06')
+    cy.get(selectorsList.genericLicenseExpireDateField).eq(0).click().clear().type('2030-06-12')
+    cy.get(selectorsList.dateCloseButton).click()
+    cy.get(selectorsList.saveButton).eq(1).click()
+    cy.get(selectorsList.saveSuccessfully)
+
     // cy.get(selectorsList.genericNationalityField).eq(0).click().type('b')
   })
+
+//Thursday, 26-Jan-2034
 
   it('Login - Fail', () => {
     cy.visit('/auth/login')
